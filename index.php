@@ -2,10 +2,7 @@
 <html>
 <head>
 <title>Pierce Random Password</title>
-<link rel="stylesheet" type="text/css" href="css/style.css" />
-<!--[if lt IE 9]>
-  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
+<link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 	<div id="wrap">
@@ -14,30 +11,32 @@
 			$amount = $_POST["amount"];
 			$length = $_POST["length"];
 			$_SESSION['amount'] = $_POST['amount'];
-			$_SESSION['length'] = $_POST['length'];			
+			$_SESSION['length'] = $_POST['length'];
 
 			function randompass($length)
 			 {
-				 $chars = "0123GHIJKLMklmnopqNOPQRST456789abcdefghijrstuvwxyzABCDEFUVWXYZ";
+				 $chars = "0123GHIJKLMklmnopqNOPQRST456789abcdefghijrstuvwxyzABCDEFUVWXYZ!@£$%^&()_-=+,|~";
 				 $thepassword = '';
 				 for($i=0;$i<$length;$i++)
 				 {
 				  $thepassword .= $chars{rand() % 60};
 				 }
 			 return $thepassword;
-			 }   
+			 }
 		?>
-		<form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" name="random">
-			<label name="amount">How many passwords?</label>
-			<br /> 
-			<input name="amount" type="number" value="<?php echo $_SESSION['amount'];?>" required>
-			<br /> 
-			<label name="length">Password length (characters)</label>
-			<br /> 
-			<input name="length" type="number" value="<?php echo $_SESSION['length'];?>" required>
-			<br /> 
-			<button type="submit">Generate Passwords</button>
-		</form>
+		<div role="main">
+			<form role="form" action="<?php $_SERVER['PHP_SELF'] ?>" method="post" name="random">
+				<label for="passwords" name="amount">How many passwords?</label>
+				<br />
+				<input id="passwords" name="amount" min="1" type="number" value="<?php echo $_SESSION['amount'];?>" required aria-required="true">
+				<br />
+				<label for="length" name="length">Password length (characters)</label>
+				<br />
+				<input id="length" name="length" type="number" value="<?php echo $_SESSION['length'];?>" required aria-required="true">
+				<br />
+				<button type="submit">Generate Passwords</button>
+			</form>
+		</div>
 		<?php
 			for($i=0;$i<$amount;$i++)
 			{
@@ -46,7 +45,6 @@
 			}
 		?>
 	</div>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 </body>
 </html>
 
