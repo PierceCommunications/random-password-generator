@@ -19,7 +19,7 @@
 				 $thepassword = '';
 				 for($i=0;$i<$length;$i++)
 				 {
-				  $thepassword .= $chars{rand() % 60};
+				  $thepassword .= $chars{rand() % strlen($chars)};
 				 }
 			 return $thepassword;
 			 }
