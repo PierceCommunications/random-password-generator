@@ -15,11 +15,11 @@
 
 			function randompass($length)
 			 {
-				 $chars = "0123GHIJKLMklmnopqNOPQRST456789abcdefghijrstuvwxyzABCDEFUVWXYZ!@£$%^&()_-=+,|~";
+				 $chars = "0123GHIJKLMklmnopqNOPQRST456789abcdefghijrstuvwxyzABCDEFUVWXYZ!@$%^&()_-=+,|~";
 				 $thepassword = '';
 				 for($i=0;$i<$length;$i++)
 				 {
-				  $thepassword .= $chars{rand() % strlen($chars)};
+				  $thepassword .= $chars{rand() % (strlen($chars)-1)};
 				 }
 			 return $thepassword;
 			 }
