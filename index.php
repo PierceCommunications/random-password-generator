@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php header('Content-Type: text/html; charset=UTF-8'); ?><!DOCTYPE html>
 <html>
 <head>
 <title>Pierce Random Password</title>
@@ -8,10 +8,10 @@
 	<div id="wrap">
 		<img src="images/logo.png" alt="Pierce Communications" title="Pierce Communications" />
 		<?php
-			$amount = $_POST["amount"];
-			$length = $_POST["length"];
-			$_SESSION['amount'] = $_POST['amount'];
-			$_SESSION['length'] = $_POST['length'];
+			$amount = filter_input(INPUT_POST, 'amount', FILTER_VALIDATE_INT,array('options'=>array('min_range'=>1, 'max_range'=>100)));
+			$length = filter_input(INPUT_POST, 'length', FILTER_VALIDATE_INT,array('options'=>array('min_range'=>1, 'max_range'=>100)));
+			$_SESSION['amount'] = $amount; 
+			$_SESSION['length'] = $length;
 
 			function randompass($length)
 			 {
@@ -25,7 +25,7 @@
 			 }
 		?>
 		<div role="main">
-			<form role="form" action="<?php $_SERVER['PHP_SELF'] ?>" method="post" name="random">
+			<form role="form" action="?" method="post" name="random">
 				<label for="passwords" name="amount">How many passwords?</label>
 				<br />
 				<input id="passwords" name="amount" min="1" type="number" value="<?php echo $_SESSION['amount'];?>" required aria-required="true">
